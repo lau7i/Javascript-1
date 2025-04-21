@@ -80,8 +80,6 @@ function addToCardButton() {
         (camiseta) => camiseta.id == camisetasId
       );
       cardCamiseta.push(selectedcamiseta);
-      console.log(cardCamiseta);
-
       localStorage.setItem("cardCamiseta", JSON.stringify(cardCamiseta));
     };
   });
