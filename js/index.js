@@ -1,13 +1,9 @@
 let titulo = document.getElementById("title");
 titulo.innerText = "Hola mundo Boca";
-titulo.style.backgroundColor = "yellow";
-titulo.style.textAlign = "center";
 
 let subtitulo = document.createElement("h2");
 subtitulo.innerHTML = "<span>Aguante Boca</span>";
 document.body.append(subtitulo);
-subtitulo.style.backgroundColor = "yellow";
-subtitulo.style.textAlign = "center";
 
 let entrenadores = ["Bianchi", "Lorenzo", "Basile"];
 let dt = document.getElementById("dt");
@@ -20,8 +16,6 @@ for (const entrenador of entrenadores) {
 
 const h2 = document.getElementById("subtitulo");
 h2.textContent = "Entrenadores exitosos en la historia de boca";
-h2.style.backgroundColor = "lightblue";
-h2.style.textAlign = "center";
 
 const camisetas = [
   {
@@ -84,3 +78,25 @@ function addToCardButton() {
     };
   });
 }
+// function camisetasVendidas(ventas) {
+//   return new promise((resolve, reject) => {
+//     if (ventas < 3) {
+//       return reject(
+//         `terminaste con "${ventas}" ventas, no cumpliste con las ventas esperadas `
+//       );
+//     }
+//     setTimeout(() => {
+//       resolve({
+//         ventas,
+//         result: "felicitaciones!cumpliste con las ventas esperadas",
+//       });
+//     }, 0);
+//   });
+// }
+
+// async function funcionAsincronica() {
+//   try {
+//     let cam = await camisetasVendidas(3);
+//   } catch (err) {}
+// }
+// funcionAsincronica();

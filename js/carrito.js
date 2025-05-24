@@ -1,7 +1,5 @@
 const h1 = document.getElementById("titulo");
-h1.textContent = "Carrito";
-h1.style.backgroundColor = "yellow";
-h1.style.textAlign = "center";
+h1.textContent = "Carrito 🛒";
 
 let cardStorage = localStorage.getItem("cardCamiseta");
 cardStorage = JSON.parse(cardStorage);
