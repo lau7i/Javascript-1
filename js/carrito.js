@@ -130,7 +130,30 @@ botonVaciarCarrito.addEventListener("click", () => {
   });
 });
 
-renderCamisetas(); // Renderizar el carrito al cargar la página
+renderCamisetas();
+
+function generarComprobante(productos, total) {
+  let comprobanteHTML = `
+        <h3>Comprobante de Compra</h3>
+        <p>Fecha: ${new Date().toLocaleDateString()}</p>
+        <p>Hora: ${new Date().toLocaleTimeString()}</p>
+        <hr>
+        <h4>Detalle de Productos:</h4>
+        <ul>
+    `;
+  productos.forEach((item) => {
+    comprobanteHTML += `<li>${item.cantidad || 1} x Camiseta del año ${
+      item.año
+    } - $${item.precio.toFixed(2)} c/u</li>`;
+  });
+  comprobanteHTML += `
+        </ul>
+        <hr>
+        <p><strong>Total Pagado: $${total.toFixed(2)}</strong></p>
+        <p>¡Gracias por tu compra😃!</p>
+    `;
+  return comprobanteHTML;
+}
 
 if (botonFinalizarCompra) {
   botonFinalizarCompra.addEventListener("click", () => {
@@ -149,14 +172,21 @@ if (botonFinalizarCompra) {
       denyButtonText: `Volver atras`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          "Gracias por su compra😃!",
-          "Compra efectuada correctamente",
-          "success"
-        );
-        carrito = [];
-        localStorage.removeItem("cardCamiseta");
-        renderCamisetas();
+        const total = carrito.reduce((sum, camiseta) => {
+          return sum + camiseta.precio * (camiseta.cantidad || 1);
+        }, 0);
+        const comprobante = generarComprobante(carrito, total);
+
+        Swal.fire({
+          title: "¡Pago realizado con éxito!",
+          html: comprobante,
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        }).then(() => {
+          carrito = [];
+          localStorage.removeItem("cardCamiseta");
+          renderCamisetas();
+        });
       } else if (result.isDenied) {
         Swal.fire("Compra cancelada", "Puedes seguir comprando", "info");
       }
