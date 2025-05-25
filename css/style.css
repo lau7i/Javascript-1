@@ -1,0 +1,208 @@
+* {
+  margin: o;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(20, 2, 56);
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+body ::selection {
+  background-color: darkblue;
+  color: yellow;
+}
+
+h1 {
+  font-size: 2.3 rem;
+  color: white;
+  text-align: center;
+  padding: 0.625rem;
+}
+h2 {
+  font-size: 1.5 rem;
+  color: white;
+  text-align: left;
+  padding: 0.3125rem;
+}
+
+.tarjeta-camiseta {
+  border: 0.0625rem solid white;
+  padding: 0.9375rem;
+  margin: 0.625rem;
+  width: 15.625rem;
+  box-shadow: 2px 2px 5px black;
+  text-align: center;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+.tarjeta-camiseta img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.625rem;
+  border-radius: 0.625rem;
+}
+
+.tarjeta-camiseta h2 {
+  color: black;
+  font-size: 1.2 rem;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.tarjeta-camiseta h3 {
+  font-size: 1 rem;
+  color: navy;
+  font-weight: lighter;
+  margin-bottom: 0.9375rem;
+}
+
+.tarjeta-camiseta .Agregarproducto {
+  background-color: #0062ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  margin-top: 0.625rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.tarjeta-camiseta .Agregarproducto:hover {
+  background-color: #054d99;
+}
+
+#dt {
+  display: flex;
+  color: white;
+  margin: auto;
+  list-style: none;
+}
+#dt li {
+  margin: 5px 10px;
+}
+span {
+  color: white;
+}
+a {
+  color: rgb(255, 162, 0);
+  cursor: alias;
+  font-family: fantasy;
+  font-size: 17px;
+  text-decoration: none;
+  margin: 20px;
+}
+
+#titulo {
+  text-align: center;
+  color: yellow;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px black;
+}
+
+#card-section {
+  display: flex;
+}
+#card-section div {
+  background-color: white;
+  box-shadow: 0 8px 16px black;
+  padding: 0.625 rem;
+  margin: 1.875rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#card-section div:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px black;
+}
+
+#card-section div img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-bottom: 0.9375rem;
+  object-fit: cover;
+  width: 12.5rem;
+  height: 12.5rem;
+}
+
+#card-section div h4 {
+  color: navy;
+  font-size: 1.4rem;
+  font-weight: lighter;
+  margin-top: 1.25rem;
+}
+.mensajecv {
+  color: white;
+}
+
+#btnComprar {
+  background-color: rgb(255, 238, 0);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  margin-right: 0.625rem;
+  transition: background-color 0.5s ease;
+  &:hover {
+    background-color: rgb(78, 56, 3);
+  }
+}
+
+.camiseta-card {
+  border: 1px solid white;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cantidad-control {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+  margin-top: 0.625rem;
+}
+
+.cantidad-control button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.cantidad-control span {
+  color: black;
+}
+
+#total-compra {
+  color: white;
+  font-weight: bold;
+  margin-top: 1.25rem;
+  font-size: 1.2rem;
+}
+
+#btnVaciarCarrito {
+  background-color: rgb(255, 238, 0);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  margin-right: 0.625rem;
+  &:hover {
+    background-color: rgb(78, 56, 3);
+  }
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "año": 2020,
+    "precio": 100000,
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHIw-U636PNGE81L1mgdV9oaitzhR4Z4x_KQ&s",
+    "cantidad": 1
+  },
+  {
+    "id": 2,
+    "año": 2021,
+    "precio": 100000,
+    "imagen": "https://plataforma.iduo.com.ar/Panelcontenidos/Contenidos/Camiseta-adidas-titular-oficial-boca-juniors-2122-1653400154-0-0.png",
+    "cantidad": 1
+  },
+  {
+    "id": 3,
+    "año": 2022,
+    "precio": 110000,
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgCJH0OV-4zlXBGDczRvZ5G_ksOaPxGSU3FA&s",
+    "cantidad": 1
+  },
+  {
+    "id": 4,
+    "año": 2023,
+    "precio": 120000,
+    "imagen": "https://bocashop.vteximg.com.br/arquivos/ids/169928-550-550/HT3697-MASC-Betsson.jpg?v=638345285903930000",
+    "cantidad": 1
+  },
+  {
+    "id": 5,
+    "año": 2024,
+    "precio": 130000,
+    "imagen": "https://acdn-us.mitiendanube.com/stores/001/075/409/products/1000038210-760253ecf7eab9cf4317279029473959-1024-1024.jpg",
+    "cantidad": 1
+  },
+  {
+    "id": 6,
+    "año": 2025,
+    "precio": 150000,
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT88jyK8Ou24kl5W0seyWU68bWS9VkfhVT-UQ&s",
+    "cantidad": 1
+  }
+]

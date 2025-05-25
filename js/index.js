@@ -1,11 +1,14 @@
 let titulo = document.getElementById("title");
-titulo.innerText = "Hola mundo Boca";
+titulo.innerText = "Camisetas Lauti ";
+
+let segundotitulo = document.getElementById("otroTitulo");
+segundotitulo.textContent = "Venta de camisetas de Boca Juniors";
 
 let subtitulo = document.createElement("h2");
-subtitulo.innerHTML = "<span>Aguante Boca</span>";
+subtitulo.innerHTML = "<span> Envios gratis a todo el país </span>";
 document.body.append(subtitulo);
 
-let entrenadores = ["Bianchi", "Lorenzo", "Basile"];
+let entrenadores = ["Titular 1981", "Suplente 2020", "Titular 2004"];
 let dt = document.getElementById("dt");
 
 for (const entrenador of entrenadores) {
@@ -15,88 +18,87 @@ for (const entrenador of entrenadores) {
 }
 
 const h2 = document.getElementById("subtitulo");
-h2.textContent = "Entrenadores exitosos en la historia de boca";
+h2.textContent = "Camisetas mas recordadas en la historia de boca";
 
-const camisetas = [
-  {
-    id: 1,
-    año: 2020,
-    precio: 100000,
-  },
-  {
-    id: 2,
-    año: 2021,
-    precio: 100000,
-  },
-  {
-    id: 3,
-    año: 2022,
-    precio: 110000,
-  },
-  {
-    id: 4,
-    año: 2023,
-    precio: 120000,
-  },
-  {
-    id: 5,
-    año: 2024,
-    precio: 130000,
-  },
-  {
-    id: 6,
-    año: 2025,
-    precio: 150000,
-  },
-];
+let carrito = JSON.parse(localStorage.getItem("cardCamiseta")) || [];
 
-const cardCamiseta = [];
-let camisetasContainer = document.getElementById("camisetas-Container");
+let Container = document.getElementById("camisetas-Container");
 
-function renderCamisetas(camisetasArray) {
-  camisetasArray.forEach((camiseta) => {
-    const card = document.createElement("div");
-    card.innerHTML = `<h3>camiseta del año:${camiseta.año}</h3>
-                      <h4>$${camiseta.precio}</h4>
-                      <button class="Agregarproducto" id=${camiseta.id}>Agregar</button>`;
-    camisetasContainer.appendChild(card);
+fetch("./db/data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((camiseta) => {
+      const card = document.createElement("div");
+      card.classList.add("tarjeta-camiseta");
+      card.innerHTML = `<img src="${camiseta.imagen}" alt="Imagen de la camiseta del año ${camiseta.año}">
+                              <h2>camiseta Titular del año: ${camiseta.año}</h2>
+                              <h3>precio:$${camiseta.precio}</h3>
+                              <button class="Agregarproducto" id=${camiseta.id}>Agregar al carrito</button>`;
+      Container.appendChild(card);
+    });
+
+    AddToCardButtons(data);
   });
-  addToCardButton();
-}
-renderCamisetas(camisetas);
 
-function addToCardButton() {
-  addButton = document.querySelectorAll(".Agregarproducto");
+function AddToCardButtons(camisetasData) {
+  const addButton = document.querySelectorAll(".Agregarproducto");
   addButton.forEach((button) => {
     button.onclick = (e) => {
-      const camisetasId = e.currentTarget.id;
-      const selectedcamiseta = camisetas.find(
-        (camiseta) => camiseta.id == camisetasId
+      const camisetaId = e.currentTarget.id;
+      const selectedCamiseta = camisetasData.find(
+        (camiseta) => camiseta.id == camisetaId
       );
-      cardCamiseta.push(selectedcamiseta);
-      localStorage.setItem("cardCamiseta", JSON.stringify(cardCamiseta));
+
+      const productoExistente = carrito.find(
+        (item) => item.id === selectedCamiseta.id
+      );
+
+      if (productoExistente) {
+        productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+        Swal.fire({
+          icon: "info",
+          text: `Se añadió una unidad más de la camiseta del año ${selectedCamiseta.año}.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        selectedCamiseta.cantidad = 1;
+        carrito.push(selectedCamiseta);
+        Swal.fire({
+          icon: "success",
+          title: "Agregado al carrito",
+          text: `La camiseta del año ${selectedCamiseta.año} ha sido agregada.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+
+      localStorage.setItem("cardCamiseta", JSON.stringify(carrito));
     };
   });
 }
-// function camisetasVendidas(ventas) {
-//   return new promise((resolve, reject) => {
-//     if (ventas < 3) {
-//       return reject(
-//         `terminaste con "${ventas}" ventas, no cumpliste con las ventas esperadas `
-//       );
-//     }
-//     setTimeout(() => {
-//       resolve({
-//         ventas,
-//         result: "felicitaciones!cumpliste con las ventas esperadas",
-//       });
-//     }, 0);
-//   });
-// }
 
-// async function funcionAsincronica() {
-//   try {
-//     let cam = await camisetasVendidas(3);
-//   } catch (err) {}
-// }
-// funcionAsincronica();
+async function cargarCamisetas() {
+  try {
+    const response = await fetch("./db/data.json");
+    if (!response.ok) {
+      throw new Error(`¡Error! Estado: ${response.status}`);
+    }
+    const data = await response.json();
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Algo salió mal!",
+      footer: "<p>Hubo un problema al cargar las camisetas disponibles</p>",
+    });
+  } finally {
+    Swal.fire({
+      icon: "info",
+      draggable: true,
+      text: "Camisetas disponibles",
+      footer: "<p>Aprovechalas</p>",
+    });
+  }
+}
+cargarCamisetas();
